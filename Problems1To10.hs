@@ -1,3 +1,17 @@
+module Problems1To10 
+(
+	myLast,
+	myButLast,
+	elementAt,
+	myLength,
+	myReverse,
+	isPalindrome,
+	flatten,
+	compress,
+	pack,
+	encode
+) where
+
 import Data.List
 
 -- 1. Find the last element of a list
@@ -65,4 +79,7 @@ pack (x:xs)
 -- Use the result of problem P09 to implement the so-called run-length encoding data compression method.
 -- Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 encode :: (Eq a) => [a] -> [(Int, a)]
-encode = error "Implement me!"
+encode xs = map (\x -> (length x, head x)) (group xs)
+-- or pointfree (definition is needed to avoid monomorphism restriction)
+encode' :: (Eq a) => [a] -> [(Int, a)]
+encode' = map (\x -> (length x, head x)) . group
