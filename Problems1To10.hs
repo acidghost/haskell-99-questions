@@ -1,15 +1,15 @@
 module Problems1To10 
 (
-	myLast,
-	myButLast,
-	elementAt,
-	myLength,
-	myReverse,
-	isPalindrome,
-	flatten,
-	compress,
-	pack,
-	encode
+    myLast,
+    myButLast,
+    elementAt,
+    myLength,
+    myReverse,
+    isPalindrome,
+    flatten,
+    compress,
+    pack,
+    encode
 ) where
 
 import Data.List
@@ -31,8 +31,8 @@ elementAt :: [a] -> Int -> a
 elementAt [] _ = error "Index out of bound"
 elementAt (x:_) 1 = x
 elementAt (_:xs) k
-	| k < 1 = error "Index out of bound"
-	| otherwise = elementAt xs (k - 1)
+    | k < 1 = error "Index out of bound"
+    | otherwise = elementAt xs (k - 1)
 
 -- 4. Find the number of elements of a list.
 myLength :: [a] -> Int
@@ -62,8 +62,8 @@ flatten (List (x:xs)) = flatten x ++ flatten (List xs)
 compress :: (Eq a) => [a] -> [a]
 compress [a] = [a]
 compress (x:xs)
-	| x == (head xs) = compress xs
-	| otherwise = x : compress xs
+    | x == (head xs) = compress xs
+    | otherwise = x : compress xs
 compress xs = xs
 
 -- 9. Pack consecutive duplicates of list elements into sublists.
@@ -72,8 +72,8 @@ pack :: (Eq a) => [a] -> [[a]]
 pack [] = []
 pack [x] = [[x]]
 pack (x:xs)
-	| x `elem` (head (pack xs)) = (x:(head (pack xs))) : (tail (pack xs))
-	| otherwise = [x] : (pack xs)
+    | x `elem` (head (pack xs)) = (x:(head (pack xs))) : (tail (pack xs))
+    | otherwise = [x] : (pack xs)
 
 -- 10. Run-length encoding of a list.
 -- Use the result of problem P09 to implement the so-called run-length encoding data compression method.
