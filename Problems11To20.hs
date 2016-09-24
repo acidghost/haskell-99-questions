@@ -94,14 +94,18 @@ rotate list n
 
 -- 20. Remove the K'th element from a list.
 removeAt :: Int -> [a] -> [a]
-removeAt k list = if k < length list then helper list 0 else list
+removeAt k list
+    | k < 0 = removeAt (length list + k) list
+    | otherwise = if k < length list then helper list 0 else list
     where
         helper (x:xs) i
             | i == k = xs
             | otherwise = x : (helper xs (i + 1))
 
 removeAt' :: Int -> [a] -> (Maybe a, [a])
-removeAt' k list = if k < length list then helper list 0 [] else (Nothing, list)
+removeAt' k list
+    | k < 0 = removeAt' (length list + k) list
+    | otherwise = if k < length list then helper list 0 [] else (Nothing, list)
     where
         helper (x:xs) i axs
             | i == k = (Just x, axs ++ xs)
