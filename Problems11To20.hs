@@ -7,10 +7,10 @@ import qualified Problems1To10 as Previous
 data ListItem a = Single a | Multiple Int a
     deriving (Show)
 encodeModified :: (Eq a) => [a] -> [ListItem a]
-encodeModified xs = 
-    map (\x -> 
-        if length x == 1 
-        then Single (head x) 
+encodeModified xs =
+    map (\x ->
+        if length x == 1
+        then Single (head x)
         else Multiple (length x) (head x)
     ) (group xs)
 -- or
@@ -86,4 +86,8 @@ slice (x:xs) i j
 -- 19. Rotate a list N places to the left.
 -- Hint: Use the predefined functions length and (++).
 rotate :: [a] -> Int -> [a]
-rotate = error "Implement me!"
+rotate [] _ = []
+rotate list n
+    | n > 0 = (drop n list) ++ (take n list)
+    | n < 0 = rotate list (length list + n)
+    | otherwise = list
