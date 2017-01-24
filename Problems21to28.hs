@@ -85,7 +85,10 @@ combinations' n (x:xs) = ts ++ ds
 printCombinations :: (Show a) => [a] -> IO ()
 printCombinations = putStrLn . foldl1 (\acc s -> acc ++ "\n" ++ s) . map show
 -- The number of combinations should be equal to the binomial coefficient.
+-- Note: factorials with and without tail recursion.
 factorial n = if n == 1 || n == 0 then 1 else n * factorial (n - 1)
+factorial' n = factorial'' 1 1
+    where factorial'' p c = if c > n then p else factorial'' (c * p) (c + 1)
 binCoeff n r = (factorial n) / ((factorial r) * factorial (n-r))
 
 
