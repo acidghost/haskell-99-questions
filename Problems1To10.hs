@@ -1,4 +1,4 @@
-module Problems1To10 
+module Problems1To10
 (
     myLast,
     myButLast,
